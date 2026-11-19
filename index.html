@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday,AYANDA  ✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #131722 0%, #080a0f 100%);
+      font-family: 'Montserrat', sans-serif;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* Ambient Starlight Background */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    /* Main Container */
+    .experience-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 460px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Header Section */
+    .greeting-header {
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c5a059;
+      margin-bottom: 8px;
+    }
+
+    .main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    /* Interactive Candle Section */
+    .candle-section {
+      margin: 20px 0 35px 0;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 0.5s forwards;
+    }
+
+    .candle {
+      width: 18px;
+      height: 80px;
+      background: linear-gradient(to right, #e2d1c3, #fdfbf7, #d4c3b5);
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+    }
+
+    .wick {
+      width: 2px;
+      height: 10px;
+      background: #4a4a4a;
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .flame {
+      width: 14px;
+      height: 24px;
+      background: radial-gradient(ellipse at bottom, #ffd700 0%, #ff6b00 60%, transparent 100%);
+      border-radius: 50% 50% 35% 35%;
+      position: absolute;
+      top: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 1.2s infinite ease-in-out;
+      box-shadow: 0 0 15px #ffb700, 0 0 30px #ff6b00;
+      transition: all 0.5s ease;
+    }
+
+    .flame.extinguished {
+      opacity: 0;
+      transform: translateX(-50%) scale(0);
+      box-shadow: none;
+    }
+
+    .smoke {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: rgba(200, 200, 200, 0.5);
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .smoke.active {
+      animation: rise 2s ease-out forwards;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+      50% { transform: translateX(-50%) scale(1.08) rotate(1deg); }
+    }
+
+    @keyframes rise {
+      0% { opacity: 0.8; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-80%, -40px) scale(4); }
+    }
+
+    .candle-hint {
+      margin-top: 15px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Card Wrapper */
+    .card-box {
+      width: 100%;
+      background: rgba(20, 24, 33, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(197, 160, 89, 0.25);
+      border-radius: 16px;
+      padding: 35px 25px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-box.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: #f1f5f9;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 400;
+    }
+
+    .letter-body span.highlight {
+      color: #c5a059;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: #c5a059;
+      margin: 0 auto 25px auto;
+      opacity: 0.5;
+    }
+
+    .closing {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #94a3b8;
+    }
+
+    .signature {
+      display: block;
+      margin-top: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-style: normal;
+      letter-spacing: 2px;
+      color: #c5a059;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Canvas for Starfall Effect */
+    canvas#sparkles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="starField"></div>
+  <canvas id="sparkles"></canvas>
+
+  <div class="experience-container">
+    
+    <div class="greeting-header">
+      <div class="subtitle">A Moment Created Just For You</div>
+      <h1 class="main-title">Happy Birthday, Ayanda</h1>
+    </div>
+
+    <div class="candle-section" onclick="makeWish()">
+      <div class="candle">
+        <div class="wick"></div>
+        <div class="flame" id="flame"></div>
+        <div class="smoke" id="smoke"></div>
+      </div>
+      <div class="candle-hint" id="hint">Make a wish & tap the flame</div>
+    </div>
+
+    <div class="card-box" id="cardBox">
+      <div class="letter-body">
+        Happy sweet 16 mshana  
+        <br><br>
+        On your birthday, beautiful, and unforgettable as you are. May this year ahead bring you endless reasons to smile, incredible peace, and everything your heart holds closest.
+        <br><br>
+        <span class="highlight">Thank you for being entirely, wonderfully you.</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="closing">
+        ain't enough but .... you know,
+        <span class="signature"><strong> from your uncle Siyabonga</strong></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Create background stars
+    const starField = document.getElementById('starField');
+    for (let i = 0; i < 70; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = Math.random() * 2 + 1 + 'px';
+      star.style.height = star.style.width;
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDuration = Math.random() * 3 + 2 + 's';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      starField.appendChild(star);
+    }
+
+    let wishMade = false;
+
+    function makeWish() {
+      if (wishMade) return;
+      wishMade = true;
+
+      // Extinguish flame and trigger smoke
+      const flame = document.getElementById('flame');
+      const smoke = document.getElementById('smoke');
+      const hint = document.getElementById('hint');
+      const cardBox = document.getElementById('cardBox');
+
+      flame.classList.add('extinguished');
+      smoke.classList.add('active');
+      hint.style.opacity = '0';
+
+      // Trigger Golden Starfall Burst
+      triggerStarfall();
+
+      // Reveal Letter
+      setTimeout(() => {
+        cardBox.classList.add('revealed');
+      }, 600);
+    }
+
+    // Canvas Sparkle Animation
+    function triggerStarfall() {
+      const canvas = document.getElementById('sparkles');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#c5a059', '#e2e8f0', '#ffffff', '#ffd700'];
+
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2 - 50,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.5) * 10 - 2,
+          size: Math.random() * 3 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          decay: Math.random() * 0.015 + 0.005
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let activeParticles = 0;
+
+        particles.forEach((p) => {
+          if (p.alpha > 0) {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.05; // light gravity
+            p.alpha -= p.decay;
+
+            ctx.save();
+            ctx.globalAlpha = Math.max(p.alpha, 0);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            activeParticles++;
+          }
+        });
+
+        if (activeParticles > 0) {
+          requestAnimationFrame(animate);
+        }
+      }
+      animate();
